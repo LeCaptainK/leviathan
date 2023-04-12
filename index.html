@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leviathan Redirect</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -12,15 +17,29 @@
             const customUrl = decodeURIComponent(customUrlEncoded);
 
             if (customUrl.startsWith("leviathan://")) {
-                prompt("Copy the URL below and paste it into the address bar to apply cookies:", customUrl);
+                const inputField = document.getElementById("customUrl");
+                inputField.value = customUrl;
+                document.getElementById("instruction").classList.remove("hidden");
+                inputField.classList.remove("hidden");
             } else {
                 document.body.innerHTML = "<h1>Error: Invalid URL</h1>";
             }
         });
+
+        function copyUrl() {
+            const inputField = document.getElementById("customUrl");
+            inputField.select();
+            inputField.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("Custom URL copied to clipboard. Please paste it into the address bar to apply cookies.");
+        }
     </script>
 </head>
 <body>
     <h1>Leviathan</h1>
+    <p id="instruction" class="hidden">Click the button to copy the custom URL and paste it into the address bar to apply cookies:</p>
+    <input type="text" id="customUrl" class="hidden" readonly>
+    <button onclick="copyUrl()" id="copyButton" class="hidden">Copy Custom URL</button>
 </body>
 </html>
 
