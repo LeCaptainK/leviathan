@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect</title>
+</head>
+<body>
     <script>
-        function redirectToCustomScheme() {
-            const params = new URLSearchParams(window.location.search);
-            const customUrl = params.get('url');
-            if (customUrl) {
-                window.location = customUrl;
-            }
+        function getQueryParam(param) {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams.get(param);
+        }
+
+        const customUrlEncoded = getQueryParam('url');
+        const customUrl = decodeURIComponent(customUrlEncoded);
+
+        if (customUrl) {
+            window.location.href = customUrl;
+        } else {
+            document.write("Invalid URL");
         }
     </script>
-</head>
-<body onload="redirectToCustomScheme()">
 </body>
 </html>
+
