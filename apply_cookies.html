@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply Cookies</title>
+</head>
+<body>
+  <script>
+    (function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const customUrl = urlParams.get('url');
+
+      if (customUrl && customUrl.startsWith('leviathan://')) {
+        const cookiesJson = decodeURIComponent(customUrl.slice(12));
+        const cookies = JSON.parse(cookiesJson);
+
+        window.postMessage({
+          type: 'LEV_APPLY_COOKIES',
+          cookies: cookies
+        }, '*');
+      }
+    })();
+  </script>
+</body>
+</html>
