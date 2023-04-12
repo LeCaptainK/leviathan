@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Redirect</title>
+    <script>
+        function redirectToCustomScheme() {
+            const params = new URLSearchParams(window.location.search);
+            const customUrl = params.get('url');
+            if (customUrl) {
+                window.location = customUrl;
+            }
+        }
+    </script>
+</head>
+<body onload="redirectToCustomScheme()">
+</body>
+</html>
