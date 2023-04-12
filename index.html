@@ -4,25 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirect</title>
+    <title>Leviathan Redirect</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const customUrlEncoded = urlParams.get('url');
+            const customUrl = decodeURIComponent(customUrlEncoded);
+
+            if (customUrl.startsWith("leviathan://")) {
+                window.location = customUrl;
+            } else {
+                document.body.innerHTML = "<h1>Error: Invalid URL</h1>";
+            }
+        });
+    </script>
 </head>
 <body>
-    <script>
-        function getQueryParam(param) {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            return urlParams.get(param);
-        }
-
-        const customUrlEncoded = getQueryParam('url');
-        const customUrl = decodeURIComponent(customUrlEncoded);
-
-        if (customUrl) {
-            window.location.href = customUrl;
-        } else {
-            document.write("Invalid URL");
-        }
-    </script>
+    <h1>Redirecting...</h1>
 </body>
 </html>
+
 
