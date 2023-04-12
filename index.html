@@ -12,7 +12,7 @@
             const customUrl = decodeURIComponent(customUrlEncoded);
 
             if (customUrl.startsWith("leviathan://")) {
-                window.location = customUrl;
+                prompt("Copy the URL below and paste it into the address bar to apply cookies:", customUrl);
             } else {
                 document.body.innerHTML = "<h1>Error: Invalid URL</h1>";
             }
@@ -20,8 +20,9 @@
     </script>
 </head>
 <body>
-    <h1>Redirecting...</h1>
+    <h1>Leviathan</h1>
 </body>
 </html>
+
 
 
